@@ -1,0 +1,19 @@
+<div id="<%= dom_id user %>">
+	<% if user.upcoming_reservations.present? %>
+	  <ul>
+			Reservations: <% user.reservations.active.each do |reservation| %>
+			  <li>Hotel: <%= reservation.hotel.name %><br/>
+			  Check In: <%= reservation.check_in %><br/>
+			  Check Out: <%= reservation.check_out %><br/>
+			  No. of Guests: <%= reservation.guests %><br/>
+			  No. of Rooms: <%= reservation.rooms %><br/>
+			  Room Type: <%= reservation.room.room_type %><br/>
+			  Price: Rs <%= reservation.price %><br/>
+			  <%= link_to 'Modify', edit_hotel_reservation_path(reservation.hotel, reservation) %>
+			  <%= link_to 'Cancel', [reservation.hotel, reservation], method: :delete, data: { confirm: 'Are you sure?' } %></li>
+			<% end %>
+		</ul>
+	<% else %>
+	  <h3>No Upcoming Bookings</h3>	
+	<% end %>	
+</div>

@@ -1,0 +1,12 @@
+<div id="<%= dom_id hotel %>">
+	<h2><%= hotel.name %></h2>
+	<p>Phone: <%= hotel.contact %></p>
+	<p>Email: <%= hotel.email %></p>
+	<p>City: <%= hotel.city %></p>
+	<% hotel.rooms.each do |room| %>
+	  Room Type: <%= room.room_type %>
+	  Max Guests: <%= room.max_guests %>
+	  Price: Rs <%= room.price %>
+	  <%= link_to 'Book', new_hotel_reservation_path(hotel, room_id: room.id) %><br/>
+	<% end %>  
+</div>

@@ -1,0 +1,25 @@
+<%= form_with(model: [hotel, reservation]) do |form| %>
+  <% if reservation.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+
+      <ul>
+        <% reservation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form.hidden_field :room_id, value: reservation.room_id %>
+  <!-- As there is no authentication as of now, by default we are making the 1st user's reservation  -->
+  <%= form.hidden_field :user_id, value: User.first&.id %>
+  Check In: <%= form.date_field :check_in, min: Date.today %>
+  Check Out: <%= form.date_field :check_out, min: Date.tomorrow %><br/>
+  Name: <%= form.text_field :name %><br/>
+  Email: <%= form.email_field :email %><br/>
+  No. of Guests: <%= form.text_field :guests %><br/>
+  Rooms: <%= form.text_field :rooms %><br/>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

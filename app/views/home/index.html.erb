@@ -1,0 +1,9 @@
+<h2>Welcome to Altimetrik Hotels</h2>
+
+<%= form_tag hotels_path, method: :get, remote: true do %>
+  <%= label_tag :query, "Search for:" %>
+  <%= text_field_tag :search %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<div id='hotels_list'></div>
