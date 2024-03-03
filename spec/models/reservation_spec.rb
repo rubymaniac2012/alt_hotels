@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Reservation, type: :model do
-
   describe '#associations' do
     it { is_expected.to(belong_to(:hotel)) }
     it { is_expected.to(belong_to(:user)) }
